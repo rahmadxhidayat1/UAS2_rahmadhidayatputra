@@ -1,3 +1,7 @@
+<?php 
+	require_once("config/koneksidb.php");
+	require_once("config/config.php");
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +40,7 @@
                 </div>
                 <div class="kolom">
                     <div class="atas">
-                        <img src="assets/img/logo.png" alt="">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><img src="assets/img/logo.png" alt=""></a>
                     </div>
                     <div class="tengah">
                         <h2 class="resmi">ADMIN</h2>
@@ -49,5 +53,40 @@
             </div>
         </div>
     </header>
+    <!-- modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<form class="bg-light p-5" action="ceklogin.php" method="POST">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Form Login</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-4">
+							<label for="username" class="form-label">Username</label>
+							<input type="text" name="username" class="form-control" id="logusername" />
+						</div>
+						<div class="mb-4">
+							<label for="password" class="form-label">Password</label>
+							<input type="password" name="password" class="form-control" id="logpassword" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="btnbatal" class="btn btn-secondary"
+							data-bs-dismiss="modal">Batal</button>
+						<button type="submit" name="btnlogin" id="btnkeluar" class="btn btn-primary">Login</button>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-5 text-end">
+							<a href="?page=lupapassword" class="btn btn-primary">Lupa Password?</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+    <!-- JS -->
+    
 </body>
 </html>
