@@ -1,0 +1,138 @@
+body{
+    position: relative;
+    min-height: 120vh;
+    width: 100%;
+    overflow: hidden;
+}
+.sidebar{
+    height: 100%;
+    width: 120px;
+    background: #11101d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 8px 2px;
+    transition: all 0.5s ease;
+}
+.sidebar.active{
+    width: 240px;
+}
+.sidebar .logo_content .logo{
+    color: #3fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+}
+.sidebar.active .logo_content .logo{
+    opacity: 1;
+    pointer-events: none;
+}
+.logo_content .logo i{
+    font-size: 28px;
+    margin-right: 4px;
+}
+.logo_content .logo .logo_name{
+    font-size: 20px;
+    font-weight: 400;
+    transition: all 0.4 ease;
+}
+.sidebar #btn{
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+.sidebar.active #btn{
+    left: 90%;
+}
+.sidebar ul{
+    margin-top: 20px;
+}
+.sidebar ul li{
+    list-style: none;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    line-height: 50px;
+}
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.4 ease;
+    white-space: nowrap;
+}
+.sidebar ul li a:hover{
+    color: #11101d;
+    background: #fff;
+}
+.sidebar ul li a i{
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+/* .sidebar ul li input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    background-color: #11101d;
+    padding-left: 50px;
+    font-size: 18px;
+    color: #fff;
+} */
+.sidebar ul li .tooltip{
+    position: absolute;
+    height: 35px;
+    width: 122px;
+    background: #fff;
+    box-shadow: 0 5px 10px (0,0,0,0.2);
+    background: #fff;
+    border-radius: 6px;
+    transform: translate(-50%, -50%);
+    line-height: 35px;
+    text-align: center;
+    left: 122px;
+    top: 50%;
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+.sidebar.active .links_name{
+    opacity: 1;
+    display: contents;
+    pointer-events: auto;
+}
+.sidebar .links_name{
+    opacity: 0;
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar ul li:hover .tooltip{
+    top: 10%;
+    transition: all 0.5s ease;
+    opacity: 1;
+}

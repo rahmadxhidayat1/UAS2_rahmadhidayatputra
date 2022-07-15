@@ -28,7 +28,7 @@
             <div class="containers content">
                 <div class="kolom">
                     <div class="atas">
-                        <a href="index.php"><img src="assets/img/logo.png" alt=""></a>
+                        <a href="forcustomer.php"><img src="assets/img/logo.png" alt=""></a>
                     </div>
                     <div class="tengah">
                         <h2 class="resmi">CUSTOMER</h2>
@@ -87,6 +87,6 @@
 		</div>
 	</div>
     <!-- JS -->
-    
+
 </body>
 </html>
