@@ -8,7 +8,7 @@
     <table class="table table-striped table-primary table-bordered border-info">
         <tr>
             <th>ID Kategori</th>
-            <th>Nama Kategori</th>
+            <th>Merk</th>
             <th>Action</th>
         </tr>
             <?php
@@ -16,11 +16,11 @@
             foreach ($data as $d) :
             ?>
                 <tr>
-                    <td><?= $d['idkategori'] ?></td>
-                    <td><?= $d['nmkategori'] ?></td>
+                    <td><?= $d['idmerk'] ?></td>
+                    <td><?= $d['merk'] ?></td>
                     <td>
-                        <a href="?modul=mod_kategoriproduk&action=edit&id=<?= $d["idkategori"]; ?>" class="btn btn-xs btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
-                        <a href="?modul=mod_kategoriproduk&action=delete&id=<?= $d["idkategori"]; ?>" class="btn btn-xs btn-danger"><i class="bi bi-trash"></i> Delete</a>
+                        <a href="?modul=mod_kategoriproduk&action=edit&id=<?= $d["idmerk"]; ?>" class="btn btn-xs btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
+                        <a href="?modul=mod_kategoriproduk&action=delete&id=<?= $d["idmerk"]; ?>" class="btn btn-xs btn-danger"><i class="bi bi-trash"></i> Delete</a>
                     </td>
                 </tr>
             <?php
@@ -38,7 +38,7 @@
         <div class="col">
          <form action="mod_kategoriproduk/kategoriproduk_Ctrl.php?modul=mod_kategoriproduk&action=save" id="kategori_produk" method="POST">
             <div class="mb-3 row">
-                <label for="nmkategori_ins" class="col-sm-2 col-form-label">Nama Kategori</label>
+                <label for="nmkategori_ins" class="col-sm-2 col-form-label">Merk Container</label>
              <div class="col-sm-6">
                 <input type="text" class="form-control" id="nmkategori_ins" name="nmkategori_ins">
              </div>
@@ -85,7 +85,7 @@
 <?php 
  } else if (isset($_GET['action']) && ($_GET['action'] == "edit")){
     $id = $_GET['id'];
-    $qry_edit = mysqli_query($koneksidb, "SELECT * FROM mst_categorycontainer WHERE idkategori='$id'");
+    $qry_edit = mysqli_query($koneksidb, "SELECT * FROM mst_categorycontainer WHERE idmerk='$id'");
     foreach ($qry_edit as $q) :
 ?>
  <div class="container-lg mt-1">
@@ -94,10 +94,10 @@
         <div class="col">
             <form action="?modul=mod_kategoriproduk&action=update" id="kategoriproduk_edit" method="POST">
                 <div class="mb-3 row">
-                 <label for="namakategori" class="col-sm-2 col-form-label">Nama Kategori</label>
+                 <label for="namakategori" class="col-sm-2 col-form-label">Merk Container</label>
                  <div class="col-lg-6">
-                   <input type="hidden" class="form-control" id="idkategori_edt" name="idkategori_edt" value="<?= $q['idkategori']; ?>">
-                   <input type="text" class="form-control" id="nmkategori_edt" name="nmkategori_edt" value="<?= $q['nmkategori']; ?>">
+                   <input type="hidden" class="form-control" id="idkategori_edt" name="idkategori_edt" value="<?= $q['idmerk']; ?>">
+                   <input type="text" class="form-control" id="nmkategori_edt" name="nmkategori_edt" value="<?= $q['merk']; ?>">
                  </div>
                 </div>
                 <div class="row">
