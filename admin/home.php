@@ -102,6 +102,7 @@ security_login();
 	</script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="../assets/js/userlogin.js"></script>
+	<script src="../assets/js/produk.js"></script>
 	<script src="../assets/js/putra.js"></script>
     <!-- js sidebar -->
     <script>

@@ -54,7 +54,7 @@
         </div>
     </header>
     <!-- modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<form class="bg-light p-5" action="ceklogin.php" method="POST">
 				<div class="modal-content">
@@ -75,7 +75,41 @@
 					<div class="modal-footer">
 						<button type="button" id="btnbatal" class="btn btn-secondary"
 							data-bs-dismiss="modal">Batal</button>
-						<button type="submit" name="btnlogin" id="btnkeluar" class="btn btn-primary">Login</button>
+						<button type="submit" name="btnlogin" id="btnlogin" class="btn btn-primary">Login</button>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-5 text-end">
+							<a href="?page=lupapassword" class="btn btn-primary">Lupa Password?</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div> -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<form class="row g-3 needs-validation" novalidate action="ceklogin.php" method="POST">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Form Login</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="mb-4">
+							<label for="username" class="form-label">Username</label>
+							<input type="text" name="username" class="form-control" required id="logusername" />
+                            <div class="invalid-feedback">Please insert Username</div>
+						</div>
+						<div class="mb-4">
+							<label for="password" class="form-label">Password</label>
+							<input type="password" name="password" class="form-control" required id="logpassword" />
+                            <div class="invalid-feedback">Please insert password</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="btnbatal" class="btn btn-secondary"
+							data-bs-dismiss="modal">Batal</button>
+						<button type="submit" name="btnlogin" id="btnlogin" class="btn btn-primary">Login</button>
 					</div>
 					<div class="row mb-3">
 						<div class="col-md-5 text-end">
@@ -87,6 +121,27 @@
 		</div>
 	</div>
     <!-- JS -->
+    <script >
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
 </body>
 </html>

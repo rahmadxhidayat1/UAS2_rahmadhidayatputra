@@ -1,7 +1,7 @@
 $("#btnsimpan").click(function () {
     let nmkategori = $("#nmkategori_ins").val();
     if (nmkategori == "") {
-      alert("nama kategori Wajib diisi!!");
+      alert("nama Merk Wajib diisi!!");
     } else {
       $("#ModalKonfirmasi").modal("show");
     }
@@ -14,7 +14,7 @@ $("#btnsimpan").click(function () {
   $("#btnsimpan_edit").click(function () {
     let nmkategori = $("#nmkategori_edt").val();
     if (nmkategori == ""||nmkategori == null) {
-      alert("nama kategori Wajib diisi!!");
+      alert("nama Merk Wajib diisi!!");
     } else {
       $("#ModalKonfirmasi2").modal("show");
     }

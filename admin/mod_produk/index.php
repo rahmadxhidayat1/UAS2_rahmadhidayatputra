@@ -3,34 +3,37 @@ include_once("produkctrl.php");
 if (!isset($_GET['action'])) {
 ?>
 <a href="?modul=mod_produk&action=add" class="btn btn-primary btn-xs mb-1">Tambah Data</a>
-	<table class="table table-striped table-primary table-bordered border-info">
+<div>
+    <h1 class="d-flex justify-content-center">PENGATURAN PRODUK</h1>
+</div>
+	<table class="table table-striped">
 		<tr>
-			<th>idcontainer</th>
+            <thead class="table-dark">
 			<th>nama container</th>
 			<th>merk</th>
 			<th>stock</th>
 			<th>tahun</th>
-			<th>ukuran</th>
+			<th>deskripsi</th>
             <th>picture</th>
             <th>action</th>
+            </thead>
 		</tr>
 		<?php
-        $listcontainer=mysqli_query($koneksidb, "SELECT kp.merk, p.idcontainer , p.nmcontainer, p.stock, p.tahun ,p.ukuran ,p.harga, p.picture FROM mst_categorycontainer kp INNER JOIN mst_container p ON 
+        $listcontainer=mysqli_query($koneksidb, "SELECT p.idcontainer, kp.merk, p.idcontainer , p.nmcontainer, p.stock, p.tahun ,p.deskripsi ,p.harga, p.picture FROM mst_categorycontainer kp INNER JOIN mst_container p ON 
         kp.idmerk = p.idmerk");
 		while ($ase= mysqli_fetch_array($listcontainer)) {
 		?>
         <tr>
-            <td><?=$ase['idcontainer']; ?></td>
             <td><?=$ase['nmcontainer']; ?></td>
             <td><?=$ase['merk']; ?></td>
             <td><?=$ase['stock']; ?></td>
             <td><?=$ase['tahun']; ?></td>
-            <td><?=$ase['ukuran']; ?></td>
-            <th><?=$ase['picture']; ?></th>
+            <td><?=$ase['deskripsi']; ?></td>
+            <td><img src="../assets/img/<?=$ase['picture']; ?>" width="200px"></td>
             <td> 
-                <a href="?modul=mod_userlogin&action=edit&id=<?=$list['iduser']; ?>" class="btn btn-primary">
+                <a href="?modul=mod_produk&action=edit&id=<?=$ase['idcontainer']; ?>" class="btn btn-primary">
                         <i class="bi bi-pencil-square"></i>edit</a>
-                <a href="?modul=mod_userlogin&action=delete&id=<?=$list['iduser']; ?>" class="btn btn-danger">
+                <a href="?modul=mod_userlogin&action=delete&id=<?=$ase['idcontainer']; ?>" class="btn btn-danger">
                         <i class="bi bi-trash"></i>delete</a>
             </td>
         </tr>
@@ -39,60 +42,70 @@ if (!isset($_GET['action'])) {
 	<?php } else if (isset($_GET['action']) && ($_GET['action'] == "add" || $_GET['action'] == "edit")) {
         if($proses=="insert"){
     ?>
-	<form action="?modul=mod_userlogin&action=save" id="formuser" method="POST">
+	<form action="?modul=mod_produk&action=save" enctype="multipart/form-data" id="formproduk" method="POST">
         <div class="row">
-			<label class="col-md-3">username</label>
+			<label class="col-md-3">Container Name</label>
 			<div class="col-md-5">
             <input type="hidden" name="proses" value="<?= $proses; ?>">
-            <input type="hidden" name="iduser" value="<?= $upiduser; ?>">
-				<input type="text" name="user" id="user" class="form-control" >
+            <input type="hidden" name="idcont" value="<?= $upidcont; ?>">
+				<input type="text" name="nm_cont" id="nm_cont" class="form-control" >
 			</div>
 		</div>
 		<div class="row">
-			<label class="col-md-3">Nama Lengkap</label>
-			<div class="col-md-5">
-				<input type="text" name="nama" id="nama" class="form-control" >
-			</div>
+			<label class="col-md-3">Merk Name</label>
+            <div class="col-md-5">
+			<select name="nm_merk" id="nm_merk" value="" class="form-control">
+                <option value="">--Pilih Barang--</option>
+                    <?php 
+                    $data_category = mysqli_query($koneksidb,"select * from mst_categorycontainer ");
+                    foreach($data_category as $p){
+                    echo '<option value="'.$p['idmerk'].' "data-namabrg="'.$p['merk'].'">
+                    '.$p['merk'].'</option>';
+                    }
+                ?>
+            </select>
+            </div>
 		</div>
-		<div class="row">
-			<label class="col-md-3">Password</label>
+        <div class="row">
+			<label class="col-md-3">Stock</label>
 			<div class="col-md-5">
-				<input type="password" name="pass" id="pass" class="form-control" >
+				<input type="number" name="stock" id="stock" class="form-control" >
 			</div>
 		</div>
         <div class="row">
-			<label class="col-md-3">Confirm Password</label>
+			<label class="col-md-3">Datetime</label>
 			<div class="col-md-5">
-				<input type="password" name="passkonfirm" id="passkonfirm" class="form-control" >
+				<input type="date" name="datetime" id="datetime" class="form-control" >
 			</div>
 		</div>
-		<div class="row">
-			<label class="col-md-3">Is Active</label>
+        <div class="row">
+			<label class="col-md-3">Price</label>
 			<div class="col-md-5">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="isactive" id="isactive" value="1">
-                    <label class="form-check-label">
-                        Aktif
-                    </label>
-                    </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="isactive" id="isactive" value="0" >
-                    <label class="form-check-label" >
-                        Not Active
-                    </label>
-                    </div>
-                </div>
+				<input type="number" name="price" id="price" class="form-control" >
+			</div>
 		</div>
+        <div class="row">
+			<label class="col-md-3">Description</label>
+			<div class="col-md-5">
+				<input type="text" name="desc" id="desc" class="form-control" >
+			</div>
+		</div>
+        <div class="mb-3 row">
+            <label for="img" class="col-md-3">Image</label>
+            <div class="col-sm-5">
+                <input type="file" class="form-control" id="picture" name="picture">
+            </div>
+        </div>
         <div class="row pt-3">
                 <label class="col-md-3"></label>
                 <div class="col-md-5">
-                    <button type="button" id="btnsubmit" class="btn btn-primary" data-bs-toggle="modal">Simpan</button>
-                    <a href="home.php?modul=mod_userlogin"><button type="button" class="btn btn-warning">Kembali</button></a>
+                    <button type="button" name="btn_sim" id="btn_sim" class="btn btn-primary" data-bs-toggle="modal">Simpan</button>
+                    <a href="home.php?modul=mod_produk"><button type="button" class="btn btn-warning">Kembali</button></a>
                 </div>
             </div>
 	</form>
 <?php }else{ ?>
-    <form action="?modul=mod_userlogin&action=save" id="formuser" method="POST">
+    <form action="?modul=mod_produk&action=" id="formproduk" enctype="" method="POST">
         <?php if($proses=="update"){ ?>
         <div class="row">
 			<label class="col-md-3">username</label>
@@ -121,34 +134,18 @@ if (!isset($_GET['action'])) {
 				<input type="password" name="passkonfirm" id="passkonfirm" class="form-control" value="<?= $uppass?>">
 			</div>
 		</div>
-		<div class="row">
-			<label class="col-md-3">is active</label>
-			<div class="col-md-5">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="isactive" id="isactive" value="1" <?=($dt['is_active'] == 1)?"checked" : "";?>>
-                    <label class="form-check-label">
-                        aktif
-                    </label>
-                    </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="isactive" id="isactive" value="0" <?=($dt['is_active'] == 0)?"checked" : "";?>>
-                    <label class="form-check-label" >
-                        tidak aktif
-                    </label>
-                    </div>
-                </div>
-		</div>
+		
         <div class="row pt-3">
                 <label class="col-md-3"></label>
                 <div class="col-md-5">
-                    <button type="button" name="btnsubmit" id="btnsubmit" class="btn btn-primary">Simpan</button>
+                    <button type="button" name="btn_sim" id="btn_sim" class="btn btn-primary">Simpan</button>
                     <a href="home.php?modul=mod_userlogin"><button type="button" class="btn btn-warning">Kembali</button></a>
                 </div>
             </div>
 	</form>
 <?php } ?>
 <!--modal -->
-<div class="modal fade" id="btnkonfirm" tabindex="-1">
+<div class="modal fade" id="themodal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -160,7 +157,7 @@ if (!isset($_GET['action'])) {
             </div>
             <div class="modal-footer">
                 <button type="button" name="btnbatal" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" name="btnsimpan" id="btnsimpan" class="btn btn-primary">Simpan</button>
+                <button type="button" name="btnsimp" id="btnsimp" class="btn btn-primary">Simpan</button>
             </div>
             </div>
         </div>

@@ -87,7 +87,7 @@ if (!isset($_GET['action'])) {
             </div>
 	</form>
 <?php }else{ ?>
-    <form action="?modul=mod_userlogin&action=save" id="formuser" method="POST">
+    <form action="?modul=mod_produk&action=save" id="formuser" method="POST">
         <?php if($proses=="update"){ ?>
         <div class="row">
 			<label class="col-md-3">username</label>
@@ -99,7 +99,7 @@ if (!isset($_GET['action'])) {
 		</div>
         <?php } ?>
 		<div class="row">
-			<label class="col-md-3">nama  lengkap</label>
+			<label class="col-md-3">nama lengkap</label>
 			<div class="col-md-5">
 				<input type="text" name="nama" id="nama" class="form-control" value="<?= $upnama?>">
 			</div>

@@ -5,11 +5,16 @@
 <!--show the tables  -->
 <div class="container-lg mt-1 ">
 <a href="?modul=mod_kategoriproduk&action=add" class="btn btn-primary mb-2 sticky-top">Tambah Data</a>
-    <table class="table table-striped table-primary table-bordered border-info">
+<div>
+    <h1 class="d-flex justify-content-center">PENGATURAN KATEGORI</h1>
+</div>
+    <table class="table table-striped">
         <tr>
+            <thead class="table-dark">
             <th>ID Kategori</th>
             <th>Merk</th>
             <th>Action</th>
+            </thead>
         </tr>
             <?php
             $data = mysqli_query($koneksidb, "SELECT * FROM mst_categorycontainer");
