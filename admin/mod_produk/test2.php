@@ -66,3 +66,6 @@ if (isset($_GET['profile'])) {
 </div>
 <?php }?>
 <?php }?>
+<!-- nama merk -->
+
+		

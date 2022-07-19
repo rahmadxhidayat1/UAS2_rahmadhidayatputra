@@ -1,8 +1,8 @@
 body{
     position: relative;
-    min-height: 120vh;
+    min-height: 200vh;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .sidebar{
     height: 100%;

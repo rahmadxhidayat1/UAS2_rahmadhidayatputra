@@ -73,7 +73,7 @@ if (!isset($_GET['action'])) {
 			</div>
 		</div>
         <div class="row">
-			<label class="col-md-3">Datetime</label>
+			<label class="col-md-3">Tahun Lahir</label>
 			<div class="col-md-5">
 				<input type="date" name="datetime" id="datetime" class="form-control" >
 			</div>
@@ -105,41 +105,74 @@ if (!isset($_GET['action'])) {
             </div>
 	</form>
 <?php }else{ ?>
-    <form action="?modul=mod_produk&action=" id="formproduk" enctype="" method="POST">
-        <?php if($proses=="update"){ ?>
+    <form action="?modul=mod_produk&action=" id="formproduk" enctype="multipart/form-data" method="POST">
+        <?php if($proses =="update"){?>
         <div class="row">
-			<label class="col-md-3">username</label>
+			<label class="col-md-3">nama container</label>
 			<div class="col-md-5">
             <input type="hidden" name="proses" value="<?= $proses; ?>">
-            <input type="hidden" name="iduser" value="<?= $upiduser; ?>">
-				<input type="text" name="user" id="user" class="form-control" value="<?= $upuser?>" readonly>
+            <input type="hidden" name="idcont" value="<?= $upidcont; ?>">
+				<input type="text" name="nm_cont" id="nm_cont" class="form-control" value="<?= $upnmcont?>" >
 			</div>
 		</div>
         <?php } ?>
-		<div class="row">
-			<label class="col-md-3">nama  lengkap</label>
+        <!--  -->
+        <div class="row">
+			<label class="col-md-3">Merk Name</label>
+            <div class="col-md-5">
+			<select class="form-control " id="nm_merk" name="nm_merk">
+					<option value="">--Pilih Kategori--</option>
+					<?php
+					while($dt = mysqli_fetch_array($listcategory)){
+						if($upmerk == $dt['idmerk']){
+							$selec = "selected='selected'";
+						}
+						else{
+							$selec = "";
+						}
+						echo "<option value='$dt[idmerk]' $selec> --$dt[merk]--</option>";
+					}
+					?>
+				</select>
+            </div>
+		</div>
+        <!-- asda -->
+        <div class="row">
+			<label class="col-md-3">Stock</label>
 			<div class="col-md-5">
-				<input type="text" name="nama" id="nama" class="form-control" value="<?= $upnama?>">
+				<input type="number" name="stock" id="stock" value="<?= $upstock?>"  class="form-control" >
 			</div>
 		</div>
-		<div class="row">
-			<label class="col-md-3">password</label>
+        <div class="row">
+			<label class="col-md-3">Tahun Lahir</label>
 			<div class="col-md-5">
-				<input type="password" name="pass" id="pass" class="form-control" value="<?= $uppass?>">
+				<input type="date" name="datetime" id="datetime" value="<?= $uptahun?>"  class="form-control" >
 			</div>
 		</div>
-		<div class="row">
-			<label class="col-md-3">confirm password</label>
+        <div class="row">
+			<label class="col-md-3">Price</label>
 			<div class="col-md-5">
-				<input type="password" name="passkonfirm" id="passkonfirm" class="form-control" value="<?= $uppass?>">
+				<input type="number" name="price" id="price" value="<?= $upharga?>"  class="form-control" >
 			</div>
 		</div>
-		
+        <div class="row">
+			<label class="col-md-3">Description</label>
+			<div class="col-md-5">
+				<input type="text" name="desc" id="desc" value="<?= $updeskripsi?>"  class="form-control" >
+			</div>
+		</div>
+        <div class="mb-3 row">
+            <label for="img" class="col-md-3">Image</label>
+            <div class="col-sm-5">
+                <img src="../assets/img/<?=$uppicture; ?>" width="200px">
+                <input type="file" class="form-control" id="picture" value="<?= $uppicture?>" name="picture">
+            </div>
+        </div>
         <div class="row pt-3">
                 <label class="col-md-3"></label>
                 <div class="col-md-5">
-                    <button type="button" name="btn_sim" id="btn_sim" class="btn btn-primary">Simpan</button>
-                    <a href="home.php?modul=mod_userlogin"><button type="button" class="btn btn-warning">Kembali</button></a>
+                    <button type="button" name="btn_sim" id="btn_sim" class="btn btn-primary" data-bs-toggle="modal">Simpan</button>
+                    <a href="home.php?modul=mod_produk"><button type="button" class="btn btn-warning">Kembali</button></a>
                 </div>
             </div>
 	</form>

@@ -11,15 +11,19 @@ else if(isset($_GET['action']) && $_GET['action'] == "add"){
 	$idmenu = 0 ;
 }
 else if(isset($_GET['action']) && $_GET['action'] == "edit"){
-    $ids=$_GET['id'];
-	$qry = mysqli_query($koneksidb,"select * from mst_container where idcontainer='$ids'");
-	$dt = mysqli_fetch_array($qry);
+    $idkey=$_GET['id'];
+	$listcategory = mysqli_query($koneksidb,"select * from mst_categorycontainer");
+    $datacon= mysqli_query($koneksidb, "SELECT p.idcontainer,p.idmerk, kp.merk, p.idcontainer , p.nmcontainer, p.stock, p.tahun ,p.deskripsi ,p.harga, p.picture 
+    FROM mst_container p INNER JOIN mst_categorycontainer kp
+    ON kp.idmerk = p.idmerk WHERE idcontainer = $idkey");
+	$dt = mysqli_fetch_array($datacon);
 	$upidcont = $dt['idcontainer'];
 	$upnmcont = $dt['nmcontainer'];
-	$upnmmerk = $dt['idmerk'];
+	$upnmmerk = $dt['merk'];
+    $upmerk = $dt['idmerk'];
     $upstock = $dt['stock'];
 	$uptahun = $dt['tahun'];
-    $upharga = $dt['idharga'];
+    $upharga = $dt['harga'];
     $updeskripsi = $dt['deskripsi'];
     $uppicture = $dt['picture'];
 	$proses = "update";
@@ -60,8 +64,14 @@ else if(isset($_GET['action']) && $_GET['action'] == "save"){
         }
 	}
 	else if($proses == "update"){
-		mysqli_query($koneksidb,"update mst_userlogin SET username='$username', nama_lengkap='$nama',password='$pass',is_active='$isactive' WHERE iduser = '$iduser' ")or die(mysqli_error($koneksidb));
-		echo '<meta http-equiv="refresh" content="0; url='.ADMIN_URL.'?modul=mod_userlogin">';
+        if(move_uploaded_file($file['tmp_name'], $target_file)){
+            $namafile = $file['name'];
+		mysqli_query($koneksidb,"update mst_container SET nmcontainer='$contname', idmerk= $merkname, stock= $stock,tahun='$datetime', harga=$price, deskripsi='$description', picture='$namafile' WHERE idcontainer = '$idcont' ")or die(mysqli_error($koneksidb));
+		echo '<meta http-equiv="refresh" content="0; url='.ADMIN_URL.'?modul=mod_produk">';
+        }
+        else if($is_upload == 0){
+			pesan("FAILED");
+        }
 	}
 	
 }else if(isset($_GET['action']) && $_GET['action'] == "delete"){
@@ -74,6 +84,6 @@ function pesan($alert){
     echo '<script language="javascript">';
     echo 'alert("'.$alert.'")';  //not showing an alert box.
     echo '</script>';
-    echo '<meta http-equiv="refresh" content="0; url=http:home.php?modul=mod_produk&action=add">';	
+    echo '<meta http-equiv="refresh">';	
 }
 ?>
