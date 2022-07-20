@@ -33,7 +33,7 @@ if (!isset($_GET['action'])) {
             <td> 
                 <a href="?modul=mod_produk&action=edit&id=<?=$ase['idcontainer']; ?>" class="btn btn-primary">
                         <i class="bi bi-pencil-square"></i>edit</a>
-                <a href="?modul=mod_userlogin&action=delete&id=<?=$ase['idcontainer']; ?>" class="btn btn-danger">
+                <a href="?modul=mod_produk&action=delete&id=<?=$ase['idcontainer']; ?>" class="btn btn-danger">
                         <i class="bi bi-trash"></i>delete</a>
             </td>
         </tr>

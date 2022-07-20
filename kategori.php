@@ -1,7 +1,8 @@
-<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col-md-8 pt-2">
-						<div class="row">
+<div class="container pb-5">
+				<div class="row">
+        <div class="col-md-2"></div>
+		<div class="col-md-8 pt-2">
+			<div class="row">
                 <!-- judul kategori -->
                 <?php
 				function fnumber($fharga){
@@ -30,7 +31,7 @@
 						</div>
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item btndetail">
-								<a href="order.php" target="_blank" class="text-white">Detail</a>
+								<a href="?page=order" class="text-white">Order</a>
 							</li>
 						</ul>
 					</div>
@@ -42,3 +43,4 @@
 		</div>
         <div class="col-md-2"></div>
 	</div>
+</div>

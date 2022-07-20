@@ -88,7 +88,7 @@ security_login();
 						include_once $_GET['modul'] . "/index.php";
 					}
 					else{
-						include_once "dashboard.php";
+						include_once "welcome.php";
 					}
 					?>
 				</div>

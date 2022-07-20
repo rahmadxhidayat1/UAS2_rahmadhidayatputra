@@ -76,8 +76,8 @@ else if(isset($_GET['action']) && $_GET['action'] == "save"){
 	
 }else if(isset($_GET['action']) && $_GET['action'] == "delete"){
     $id=$_GET['id'];
-    mysqli_query($koneksidb,"DELETE FROM mst_userlogin where iduser='$id'");
-    echo '<meta http-equiv="refresh" content="0; url='.ADMIN_URL.'?modul=mod_userlogin">';
+    mysqli_query($koneksidb,"DELETE FROM mst_container where idcontainer='$id'");
+    echo '<meta http-equiv="refresh" content="0; url='.ADMIN_URL.'?modul=mod_produk">';
 
 }
 function pesan($alert){	
