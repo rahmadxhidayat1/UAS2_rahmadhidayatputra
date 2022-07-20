@@ -1,5 +1,4 @@
 <?php 
-$data_member = mysqli_query($koneksidb,"select * from daftarmember");
 $data_produk = mysqli_query($koneksidb,"select * from mst_container ");
 $query_cekkode = mysqli_query($koneksidb,
 		"select nojual from trn_jualhead ORDER BY nojual DESC LIMIT 0,1");
@@ -101,7 +100,7 @@ else{
 			</div>
 		</div>
 		<!-- konfirmasi modal -->
-		<div class="modal" tabindex="-1" id="konfirmasiorder">
+		<div class="modal fade" tabindex="-1" id="konfirmasiorder">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">

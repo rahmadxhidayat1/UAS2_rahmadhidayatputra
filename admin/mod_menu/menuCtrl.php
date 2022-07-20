@@ -34,4 +34,9 @@ if (!isset($_GET['action'])) {
 		mysqli_query($koneksidb, "update mst_menu set nmmenu='$nmmenu', link='$link', icon='$icon' where idmenu = $id ") or die(mysqli_error($koneksidb));
 		echo '<meta http-equiv="refresh" content="0; url=' . ADMIN_URL . '?modul=mod_menu">';
 	}
+} else if(isset($_GET['action']) && $_GET['action'] == "delete"){
+    $id=$_GET['id'];
+    mysqli_query($koneksidb,"DELETE FROM mst_menu where idmenu='$id'");
+    echo '<meta http-equiv="refresh" content="0; url='.ADMIN_URL.'?modul=mod_menu">';
+
 }

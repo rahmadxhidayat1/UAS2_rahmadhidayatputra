@@ -52,10 +52,10 @@ security_login();
 				<a href="logout.php" class="btn btn-warning text-white"> Logout</a>
 			</form>
 		</div>
-	</nav> --> -->
+	</nav> -->
 <!-- sidenav
 
-<!-- CONTENT -->
+CONTENT -->
 	<section class="mt-4">
 		<div class="row">
 			<div class="col-md-3">
