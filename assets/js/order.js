@@ -1,6 +1,6 @@
 if (document.getElementById("formorder")) {
     $("#idbarang").change(function () {
-      let idproduk = $(this).val();
+      // let idproduk = $(this).val();
       let namabarang = $(this).find(":selected").data("namabrg");
       let hargabarang = $(this).find(":selected").data("hargabrg");
       $("#nm_barang").val(namabarang);

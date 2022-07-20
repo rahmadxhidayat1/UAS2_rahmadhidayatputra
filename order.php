@@ -1,7 +1,6 @@
 <?php 
 $data_produk = mysqli_query($koneksidb,"select * from mst_container ");
-$query_cekkode = mysqli_query($koneksidb,
-		"select nojual from trn_jualhead ORDER BY nojual DESC LIMIT 0,1");
+$query_cekkode = mysqli_query($koneksidb,"select nojual from trn_jualhead ORDER BY nojual DESC LIMIT 0,1");
 $cekkode = mysqli_fetch_array($query_cekkode);
 if(mysqli_num_rows($query_cekkode) > 0){
 	$kodeakhir = $cekkode['nojual'];
